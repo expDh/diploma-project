@@ -1,0 +1,127 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  USER
+  MANAGER
+  ADMIN
+}
+
+enum Position {
+  NONE
+  EMPLOYEE
+  RES_PERSON
+}
+
+model Users {
+  id_users           Int                @id @default(autoincrement())
+  email              String             @unique
+  password           String
+  role               Role               @default(USER)
+  position           Position           @default(NONE)
+  firstName          String?
+  lastName           String?
+  patronymic         String?
+  created_at         DateTime           @default(now())
+
+  inventories        Inventory[]
+  userStores         User_Stores[]
+  createdMovements   EquipmentMovement[]   
+}
+
+model Stores {
+  id_store           Int                @id @default(autoincrement())
+  address            String
+
+  equipments         Equipment[]
+  inventories        Inventory[]
+  userStores         User_Stores[]
+  movements          EquipmentMovement[]   
+}
+
+model User_Stores {
+  id                 Int      @id @default(autoincrement())
+  user_id            Int
+  store_id           Int
+
+  user               Users    @relation(fields: [user_id], references: [id_users], onDelete: Cascade)
+  store              Stores   @relation(fields: [store_id], references: [id_store], onDelete: Cascade)
+
+  @@unique([user_id, store_id])
+}
+
+model Equipment {
+  id_equipment       Int      @id @default(autoincrement())
+  inventory_number   Int?
+  name               String
+  model              String?
+  count              Int?     @default(0)   
+  store_id           Int
+  status             String?  @default("Используется")
+
+  store              Stores                  @relation(fields: [store_id], references: [id_store], onDelete: Cascade)
+  inventoryItems     Inventory_Items[]
+  movements          EquipmentMovement[]     
+
+  @@index([store_id])
+}
+
+model Inventory {
+  id_inventory       Int      @id @default(autoincrement())
+  store_id           Int
+  inventory_date     DateTime
+  created_by         Int
+  status         String   @default("В работе") 
+  comment        String?
+
+  store              Stores   @relation(fields: [store_id], references: [id_store], onDelete: Cascade)
+  creator            Users    @relation(fields: [created_by], references: [id_users], onDelete: Restrict)
+  inventoryItems     Inventory_Items[]
+}
+
+model Inventory_Items {
+  id                 Int      @id @default(autoincrement())
+  inventory_id       Int
+  equipment_id       Int
+  count_system   Int      
+  count_fact     Int?
+  status_fact        String
+  comment            String?
+
+  inventory          Inventory @relation(fields: [inventory_id], references: [id_inventory], onDelete: Cascade)
+  equipment          Equipment @relation(fields: [equipment_id], references: [id_equipment], onDelete: Cascade)
+  movements          EquipmentMovement[]   
+  @@index([inventory_id])
+}
+
+model EquipmentMovement {
+  id                 Int       @id @default(autoincrement())
+  equipment_id       Int
+  store_id           Int
+  date               DateTime  @default(now())
+  quantity           Int       
+  operation_type     String    
+  comment            String?
+  created_by         Int
+  inventory_item_id  Int?
+
+  equipment          Equipment       @relation(fields: [equipment_id],references: [id_equipment],onDelete: Cascade)
+
+  store              Stores          @relation(fields: [store_id],references: [id_store],onDelete: Cascade)
+
+  creator            Users           @relation(fields: [created_by],references: [id_users],onDelete: Restrict)
+
+  inventoryItem      Inventory_Items? @relation(fields: [inventory_item_id],references: [id],onDelete: SetNull)
+
+  @@index([equipment_id, date])
+  @@index([store_id, date])
+  @@index([created_by])
+  @@index([inventory_item_id])
+}
