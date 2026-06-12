@@ -6,7 +6,8 @@ const axiosInstance = axios.create({
   // baseURL: '//217.198.6.94',
   // baseURL: 'https://diploma-inventory.ru/api',
   // baseURL: '/api',
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4200',
+  // baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4200',
+  baseURL: (process.env.NEXT_PUBLIC_API_URL || "http://localhost:4200") + "/api",
 
 
 
