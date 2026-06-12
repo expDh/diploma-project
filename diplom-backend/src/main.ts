@@ -33,7 +33,11 @@ async function bootstrap() {
   allowedHeaders: ['Content-Type', 'Authorization', 'Cookie', 'X-Requested-With'],
   })
 
-console.log(process.env.PORT)
-await app.listen(process.env.PORT ?? 4200);
+// console.log(process.env.PORT)
+// await app.listen(process.env.PORT ?? 4200);
+  const port = process.env.PORT ?? 4200;
+  console.log(`Server is running on port: ${port}`);
+
+  await app.listen(port);
 }
 bootstrap();
