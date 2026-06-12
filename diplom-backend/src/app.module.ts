@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { EquipmentsModule } from './equipments/equipments.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { InventoryItemsModule } from './inventory-items/inventory-items.module';
+import { HealthController } from './health/health.controller';
 // import { AdminPanelModule } from './adminPanel/adminPanel.module';
 
 
@@ -16,7 +17,7 @@ import { InventoryItemsModule } from './inventory-items/inventory-items.module';
   imports: [ConfigModule.forRoot({
       isGlobal: true,
     }), AuthModule, UsersModule, StoresModule, EquipmentsModule, InventoryModule, InventoryItemsModule ],
-  controllers: [AppController],
+  controllers: [AppController,HealthController],
   providers: [AppService],
 })
 export class AppModule {}
