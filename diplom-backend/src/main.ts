@@ -24,6 +24,7 @@ async function bootstrap() {
     'http://localhost:4200',
     'https://diploma-inventory.ru',
     /^https:\/\/.*-diploma-inventory\.vercel\.app$/,
+    'https://diploma-production-b922.up.railway.app',
     
   ],
     credentials: true,
