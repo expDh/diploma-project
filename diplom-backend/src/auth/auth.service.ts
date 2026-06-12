@@ -47,10 +47,14 @@ export class AuthService {
 
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
+      secure: true,
+      sameSite: 'none',
       maxAge: this.calculateMs(this.accessExpires),
     });
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
+      secure: true,
+      sameSite: 'none',
       maxAge: this.calculateMs(this.refreshExpires),
     });
 
@@ -81,12 +85,16 @@ export class AuthService {
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
       maxAge: this.calculateMs(this.accessExpires),
-      sameSite: 'lax',
+      // sameSite: 'lax',
+      secure: true,
+  sameSite: 'none',
     });
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       maxAge: this.calculateMs(this.refreshExpires),
-      sameSite: 'lax',
+      // sameSite: 'lax',
+      secure: true,
+  sameSite: 'none',
     });
 
     const { password, ...safeUser } = user;
@@ -98,14 +106,12 @@ export class AuthService {
     };
   }
 
-
   logout(@Res({ passthrough: true }) res: Response) {
     res.clearCookie('accessToken');
     res.clearCookie('refreshToken');
     return { message: 'Вы вышли из системы' };
   }
 
-  
   refreshToken(
     @Res({ passthrough: true }) res: Response,
     refreshTokenCookie?: string,
@@ -126,10 +132,14 @@ export class AuthService {
       res.cookie('accessToken', newAccessToken, {
         httpOnly: true,
         maxAge: this.calculateMs(this.accessExpires),
+        secure: true,
+  sameSite: 'none',
       });
       res.cookie('refreshToken', newRefreshToken, {
         httpOnly: true,
         maxAge: this.calculateMs(this.refreshExpires),
+        secure: true,
+  sameSite: 'none',
       });
 
       return { message: 'Токены обновлены' };
