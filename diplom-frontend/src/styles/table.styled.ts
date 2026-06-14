@@ -27,7 +27,7 @@ export const TableWrapper = styled.div`
 
 export const TableHeader = styled.div`
   display: grid;
-  grid-template-columns: 60px 1fr 1fr 1fr 1fr 0.7fr 0.7fr 1.2fr;
+  grid-template-columns: 60px 1fr 1fr 1fr 1fr 0.7fr 0.7fr 0.7fr 1.2fr;
   justify-content:center;
   background: #1f2937;
   color: #9ca3af;
@@ -50,7 +50,7 @@ export const HeaderCell = styled.div`
 
 export const Row = styled.div`
   display: grid;
-  grid-template-columns: 60px 1fr 1fr 1fr 1fr 0.7fr 0.7fr 1.2fr;
+  grid-template-columns: 60px 1fr 1fr 1fr 1fr 0.7fr 0.7fr 0.7fr 1.2fr;
 
   border-bottom: 1px solid #232833;
   transition: background 0.2s;

@@ -37,12 +37,13 @@ class AuthStore {
 
   async register(
     email: string,
+    phoneNumber:string,
     password: string,
     firstName: string,
     lastName: string,
     patronymic: string,
   ) {
-    await authApi.register(email, password, firstName, lastName, patronymic);
+    await authApi.register(email, phoneNumber, password, firstName, lastName, patronymic);
     await this.loadUser();
   }
 

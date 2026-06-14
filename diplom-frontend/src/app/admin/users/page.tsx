@@ -72,6 +72,7 @@ const positionNames: Record<string, string> = {
     <HeaderCell>Имя</HeaderCell>
     <HeaderCell>Отчество</HeaderCell>
     <HeaderCell>Email</HeaderCell>
+    <HeaderCell>Номер телефона</HeaderCell>
     <HeaderCell>Роль</HeaderCell>
     <HeaderCell>Позиция</HeaderCell>
     <HeaderCell>Действия</HeaderCell>
@@ -85,6 +86,7 @@ const positionNames: Record<string, string> = {
         <Cell>{user.firstName || '-'}</Cell>
         <Cell>{user.patronymic || '-'}</Cell>
         <Cell>{user.email}</Cell>
+        <Cell>{user.phoneNumber}</Cell>
         {/* <Cell>{user.role}</Cell>
         <Cell>{user.position}</Cell> */}
         <Cell>{roleNames[user.role] || user.role}</Cell>

@@ -17,6 +17,7 @@ const EditUserModal: React.FC<Props> = observer(({ open, user, onClose }) => {
     lastName: '',
     patronymic: '',
     email: '',
+    phoneNumber: '',
     role: 'USER',
     position: 'EMPLOYEE',
   });
@@ -40,6 +41,7 @@ const EditUserModal: React.FC<Props> = observer(({ open, user, onClose }) => {
         lastName: user.lastName || '',
         patronymic: user.patronymic || '',
         email: user.email || '',
+        phoneNumber: user.phoneNumber || '',
         role: user.role || 'USER',
         position: user.position || 'EMPLOYEE',
       });
@@ -98,6 +100,13 @@ const EditUserModal: React.FC<Props> = observer(({ open, user, onClose }) => {
           type="email"
           placeholder="Email"
           value={form.email}
+          onChange={handleChange}
+        />
+        <S.Input
+          name="phoneNumber"
+          type="phoneNumber"
+          placeholder="Номер телефона"
+          value={form.phoneNumber}
           onChange={handleChange}
         />
 

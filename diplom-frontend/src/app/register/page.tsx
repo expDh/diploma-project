@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -19,7 +20,7 @@ const RegisterPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await authStore.register(email, password, firstName, lastName, patronymic);
+      await authStore.register(email, phoneNumber, password, firstName, lastName, patronymic);
       toast.success('Регистрация прошла успешно!');
       setTimeout(() => router.push('/'), 1000);
     } catch (err: any) {
@@ -34,6 +35,7 @@ const RegisterPage: React.FC = () => {
       <form onSubmit={handleSubmit}>
         
         <FormInput name="email" label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <FormInput name="phoneNumber" label="Номер телефона" type="phoneNumber" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
         <FormInput name="password" label="Пароль" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <FormInput name="lastName" label="Фамилия" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
         <FormInput name="firstName" label="Имя" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />

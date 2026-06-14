@@ -56,6 +56,7 @@ export class UsersService {
       return allRes.map((r) => ({
         id: r.id_users,
         email: r.email,
+        phoneNumber: r.phoneNumber,
         firstName: r.firstName,
         lastName: r.lastName,
         patronymic: r.patronymic,

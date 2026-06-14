@@ -25,11 +25,12 @@ export const authApi = {
     axiosInstance.post('/auth/login', { email, password }),
   register: (
     email: string,
+    phoneNumber:string,
     password: string,
     firstName: string,
     lastName: string,
     patronymic: string,
-  ) => axiosInstance.post('/auth/register', { email, password, firstName, lastName, patronymic }),
+  ) => axiosInstance.post('/auth/register', { email, phoneNumber, password, firstName, lastName, patronymic }),
   logout: () => axiosInstance.post('/auth/logout'),
 };
 

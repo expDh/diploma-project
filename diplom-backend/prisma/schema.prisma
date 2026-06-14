@@ -23,6 +23,7 @@ enum Position {
 model Users {
   id_users           Int                @id @default(autoincrement())
   email              String             @unique
+  phoneNumber        String?
   password           String
   role               Role               @default(USER)
   position           Position           @default(NONE)

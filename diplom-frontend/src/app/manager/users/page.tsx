@@ -11,7 +11,6 @@ import EditUserModal from '../../../components/Modals/EditUserModal';
 import {
   PageContainer,
   PageTitle,
-  
   ActionsCell,
   ActionButtons,
   EditButton,
@@ -22,7 +21,6 @@ import {
   HeaderCell,
   Row,
   Cell,
-  
 } from '../../../styles/table.styled';
 
 const UsersPage = observer(() => {
@@ -45,46 +43,59 @@ const UsersPage = observer(() => {
       setSelectedUser(null);
     }
   };
+  const roleNames: Record<string, string> = {
+    ADMIN: 'Администратор',
+    MANAGER: 'Менеджер',
+    USER: 'Пользователь',
+  };
+
+  const positionNames: Record<string, string> = {
+    NONE: 'Без должности',
+    EMPLOYEE: 'Сотрудник',
+    RES_PERSON: 'Ответственное лицо',
+  };
 
   return (
     <PageContainer>
       <PageTitle>Пользователи</PageTitle>
 
       <TableWrapper>
-  <TableHeader>
-    <HeaderCell>ID</HeaderCell>
-    <HeaderCell>Имя</HeaderCell>
-    <HeaderCell>Фамилия</HeaderCell>
-    <HeaderCell>Отчество</HeaderCell>
-    <HeaderCell>Email</HeaderCell>
-    <HeaderCell>Роль</HeaderCell>
-    <HeaderCell>Позиция</HeaderCell>
-    <HeaderCell>Действия</HeaderCell>
-  </TableHeader>
+        <TableHeader>
+          <HeaderCell>ID</HeaderCell>
+          <HeaderCell>Имя</HeaderCell>
+          <HeaderCell>Фамилия</HeaderCell>
+          <HeaderCell>Отчество</HeaderCell>
+          <HeaderCell>Email</HeaderCell>
+          <HeaderCell>Номер телефона</HeaderCell>
+          <HeaderCell>Роль</HeaderCell>
+          <HeaderCell>Позиция</HeaderCell>
+          <HeaderCell>Действия</HeaderCell>
+        </TableHeader>
 
-  <TableBody>
-    {usersStore.users.map(user => (
-      <Row key={user.id_users}>
-        <Cell>{user.id_users}</Cell>
-        <Cell>{user.firstName || '-'}</Cell>
-        <Cell>{user.lastName || '-'}</Cell>
-        <Cell>{user.patronymic || '-'}</Cell>
-        <Cell>{user.email}</Cell>
-        <Cell>{user.role}</Cell>
-        <Cell>{user.position}</Cell>
-        <ActionsCell>
-          <EditButton onClick={() => setEditUser(user)}>Редактировать</EditButton>
-          <DeleteButton onClick={() => setSelectedUser(user)}>Удалить</DeleteButton>
-        </ActionsCell>
-      </Row>
-    ))}
-  </TableBody>
-</TableWrapper>
+        <TableBody>
+          {usersStore.users.map((user) => (
+            <Row key={user.id_users}>
+              <Cell>{user.id_users}</Cell>
+              <Cell>{user.firstName || '-'}</Cell>
+              <Cell>{user.lastName || '-'}</Cell>
+              <Cell>{user.patronymic || '-'}</Cell>
+              <Cell>{user.email}</Cell>
+              <Cell>{user.phoneNumber}</Cell>
+              {/* <Cell>{user.role}</Cell>
+        <Cell>{user.position}</Cell> */}
+              <Cell>{roleNames[user.role] || user.role}</Cell>
+              <Cell>{positionNames[user.position] || user.position}</Cell>
+              <ActionsCell>
+                <EditButton onClick={() => setEditUser(user)}>Редактировать</EditButton>
+                <DeleteButton onClick={() => setSelectedUser(user)}>Удалить</DeleteButton>
+              </ActionsCell>
+            </Row>
+          ))}
+        </TableBody>
+      </TableWrapper>
 
-      
       <EditUserModal open={!!editUser} user={editUser} onClose={() => setEditUser(null)} />
 
-      
       <ConfirmDeleteModal
         open={!!selectedUser}
         title="Удаление пользователя"
