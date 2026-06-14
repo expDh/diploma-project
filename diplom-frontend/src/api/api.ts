@@ -7,9 +7,7 @@ const axiosInstance = axios.create({
   // baseURL: 'https://diploma-inventory.ru/api',
   // baseURL: '/api',
   // baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4200',
-  baseURL: (process.env.NEXT_PUBLIC_API_URL || "http://localhost:4200") + "/api",
-
-
+  baseURL: (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4200') + '/api',
 
   withCredentials: true,
 });
@@ -25,12 +23,20 @@ export const authApi = {
     axiosInstance.post('/auth/login', { email, password }),
   register: (
     email: string,
-    phoneNumber:string,
+    phoneNumber: string,
     password: string,
     firstName: string,
     lastName: string,
     patronymic: string,
-  ) => axiosInstance.post('/auth/register', { email, phoneNumber, password, firstName, lastName, patronymic }),
+  ) =>
+    axiosInstance.post('/auth/register', {
+      email,
+      phoneNumber,
+      password,
+      firstName,
+      lastName,
+      patronymic,
+    }),
   logout: () => axiosInstance.post('/auth/logout'),
 };
 
@@ -39,6 +45,24 @@ export const usersApi = {
   deleteUser: (id: number) => axiosInstance.delete(`/users/${id}`),
   getUserById: (id: number) => axiosInstance.get(`/users/${id}`),
   updateUser: (id: number, data: any) => axiosInstance.patch(`/users/updateUser/${id}`, data),
+};
+
+export const equipmentRequestsApi = {
+  createRequest: (data: any) =>
+    axiosInstance.post('/equipment-requests', data),
+  // getAllRequests: () => axiosInstance.get('/equipment-requests'),
+  getAllRequests: () =>
+  axiosInstance.get('/equipment-requests').then(res => {
+    console.log('RAW RESPONSE:', res);
+    return res;
+  }),
+  updateRequestStatus: (
+    id: number,
+    data: {
+      status: string;
+      comment?: string;
+    },
+  ) => axiosInstance.patch(`/equipment-requests/${id}/status`, data),
 };
 
 export const movementsApi = {

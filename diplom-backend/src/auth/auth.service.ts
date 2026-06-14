@@ -39,10 +39,10 @@ export class AuthService {
       },
     });
 
-    const accessToken = jwt.sign({ id: user.id_users }, this.jwtSecret, {
+    const accessToken = jwt.sign({ id: user.id_users, role:user.role }, this.jwtSecret, {
       expiresIn: this.accessExpires,
     });
-    const refreshToken = jwt.sign({ id: user.id_users }, this.jwtSecret, {
+    const refreshToken = jwt.sign({ id: user.id_users, role:user.role }, this.jwtSecret, {
       expiresIn: this.refreshExpires,
     });
 
@@ -76,10 +76,10 @@ export class AuthService {
       throw new BadRequestException('Неверный логин или пароль');
     }
 
-    const accessToken = jwt.sign({ id: user.id_users }, this.jwtSecret, {
+    const accessToken = jwt.sign({ id: user.id_users, role:user.role }, this.jwtSecret, {
       expiresIn: this.accessExpires,
     });
-    const refreshToken = jwt.sign({ id: user.id_users }, this.jwtSecret, {
+    const refreshToken = jwt.sign({ id: user.id_users, role:user.role }, this.jwtSecret, {
       expiresIn: this.refreshExpires,
     });
 
@@ -123,10 +123,10 @@ export class AuthService {
     try {
       const payload: any = jwt.verify(refreshTokenCookie, this.jwtSecret);
 
-      const newAccessToken = jwt.sign({ id: payload.id }, this.jwtSecret, {
+      const newAccessToken = jwt.sign({ id: payload.id, role: payload.role }, this.jwtSecret, {
         expiresIn: this.accessExpires,
       });
-      const newRefreshToken = jwt.sign({ id: payload.id }, this.jwtSecret, {
+      const newRefreshToken = jwt.sign({ id: payload.id, role: payload.role }, this.jwtSecret, {
         expiresIn: this.refreshExpires,
       });
 

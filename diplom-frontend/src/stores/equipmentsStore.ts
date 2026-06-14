@@ -60,7 +60,7 @@ class EquipmentsStore {
 
       console.log('✅ Списание прошло успешно');
       await this.fetchEquipments();
-      alert(`✅ Успешно списано ${quantity} шт.`);
+      alert(`Успешно списано ${quantity} шт.`);
     } catch (error: any) {
       console.error('❌ Ошибка списания:', error);
 

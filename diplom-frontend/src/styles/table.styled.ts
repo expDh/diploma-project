@@ -16,8 +16,6 @@ export const PageTitle = styled.h1`
   color: #f3f4f6;
 `;
 
-
-
 export const TableWrapper = styled.div`
   background: #161a20;
   border-radius: 10px;
@@ -28,7 +26,7 @@ export const TableWrapper = styled.div`
 export const TableHeader = styled.div`
   display: grid;
   grid-template-columns: 60px 1fr 1fr 1fr 1fr 0.7fr 0.7fr 0.7fr 1.2fr;
-  justify-content:center;
+  justify-content: center;
   background: #1f2937;
   color: #9ca3af;
   font-weight: 500;
@@ -37,7 +35,7 @@ export const TableHeader = styled.div`
   letter-spacing: 0.5px;
 `;
 
-export const TableBody = styled.div``;   
+export const TableBody = styled.div``;
 
 export const HeaderCell = styled.div`
   padding: 14px 12px;
@@ -45,7 +43,9 @@ export const HeaderCell = styled.div`
   border-right: 1px solid #303746;
   text-align: center;
   justify-content: center;
-  &:last-child { border-right: none; }
+  &:last-child {
+    border-right: none;
+  }
 `;
 
 export const Row = styled.div`
@@ -71,7 +71,12 @@ export const Cell = styled.div`
   text-align: center;
   justify-content: center;
   align-items: center;
-  &:last-child { border-right: none; }
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  &:last-child {
+    border-right: none;
+  }
 `;
 
 export const ActionsCell = styled(Cell)`
@@ -104,22 +109,21 @@ export const ActionButton = styled.button`
 
 export const EditButton = styled(ActionButton)`
   background: #3b82f6;
-  width:7rem;
+  width: 7rem;
   color: white;
 `;
 
 export const DeleteButton = styled(ActionButton)`
   background: #ef4444;
-  width:7rem;
+  width: 7rem;
   color: white;
 `;
 
 export const WriteOffButton = styled(ActionButton)`
   background: #ef4444;
-  width:7rem;
+  width: 7rem;
   color: white;
 `;
-
 
 export const StoreSectionHeader = styled.div`
   background: linear-gradient(90deg, #27354b, #202a3f);

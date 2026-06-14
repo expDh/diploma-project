@@ -22,6 +22,11 @@ export class AdminOrManagerGuard implements CanActivate {
       select: { role: true },
     });
 
-    return dbUser?.role === Role.ADMIN || dbUser?.role === Role.MANAGER;
+    // return dbUser?.role === Role.ADMIN || dbUser?.role === Role.MANAGER;
+    if (!dbUser || (dbUser.role !== Role.ADMIN && dbUser.role !== Role.MANAGER)) {
+  throw new ForbiddenException('Нет доступа');
+}
+
+return true;
   }
 }

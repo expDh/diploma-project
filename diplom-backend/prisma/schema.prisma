@@ -20,6 +20,18 @@ enum Position {
   RES_PERSON
 }
 
+enum RequestType {
+  PURCHASE
+  REPAIR
+}
+
+enum RequestStatus {
+  CREATED
+  IN_PROGRESS
+  COMPLETED
+  REJECTED
+}
+
 model Users {
   id_users           Int                @id @default(autoincrement())
   email              String             @unique
@@ -35,6 +47,8 @@ model Users {
   inventories        Inventory[]
   userStores         User_Stores[]
   createdMovements   EquipmentMovement[]   
+  createdRequests EquipmentRequest[] @relation("RequestCreator")
+  handledRequests EquipmentRequest[] @relation("RequestHandler")
 }
 
 model Stores {
@@ -45,6 +59,8 @@ model Stores {
   inventories        Inventory[]
   userStores         User_Stores[]
   movements          EquipmentMovement[]   
+
+  equipmentRequests EquipmentRequest[]
 }
 
 model User_Stores {
@@ -70,7 +86,7 @@ model Equipment {
   store              Stores                  @relation(fields: [store_id], references: [id_store], onDelete: Cascade)
   inventoryItems     Inventory_Items[]
   movements          EquipmentMovement[]     
-
+  requests           EquipmentRequest[]
   @@index([store_id])
 }
 
@@ -125,4 +141,28 @@ model EquipmentMovement {
   @@index([store_id, date])
   @@index([created_by])
   @@index([inventory_item_id])
+}
+
+
+model EquipmentRequest {
+  id           Int            @id @default(autoincrement())
+  store_id     Int
+  created_by   Int
+  type         RequestType
+  equipment_id Int?
+  quantity     Int
+  comment      String?
+  status       RequestStatus  @default(CREATED)
+  handled_by   Int?
+  created_at   DateTime       @default(now())
+  updated_at   DateTime       @updatedAt
+
+  store     Stores     @relation(fields: [store_id], references: [id_store])
+  creator   Users      @relation("RequestCreator", fields: [created_by], references: [id_users])
+  equipment Equipment? @relation(fields: [equipment_id], references: [id_equipment])
+  handler   Users?     @relation("RequestHandler", fields: [handled_by], references: [id_users])
+
+  @@index([store_id])
+  @@index([created_by])
+  @@index([status])
 }
