@@ -17,7 +17,7 @@ import {
 } from '../../../styles/table.styled';
 import RequestStatusModal from '@/components/Modals/Requests/RequestsModalUpdate';
 
-const EquipmentRequestsPage = observer(() => {
+const AdminEquipmentRequestsPage = observer(() => {
   const [selectedRequest, setSelectedRequest] = useState<any>(null);
 
   useEffect(() => {
@@ -138,4 +138,4 @@ const EquipmentRequestsPage = observer(() => {
   );
 });
 
-export default EquipmentRequestsPage;
+export default AdminEquipmentRequestsPage;
