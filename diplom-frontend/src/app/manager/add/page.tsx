@@ -33,7 +33,7 @@ const AddPage: React.FC = observer(() => {
           onClick={() => setShowStoreModal(true)}
           style={bigButtonStyle('#10b981')}
         >
-          🏪 Добавить новый магазин
+          Добавить новый магазин
         </button>
 
         {/* Кнопка Добавить оборудование */}
@@ -41,7 +41,7 @@ const AddPage: React.FC = observer(() => {
           onClick={() => setShowEquipmentModal(true)}
           style={bigButtonStyle('#3b82f6')}
         >
-          📦 Добавить оборудование
+          Добавить оборудование
         </button>
 
       </div>
