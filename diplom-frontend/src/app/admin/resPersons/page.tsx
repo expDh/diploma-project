@@ -61,6 +61,9 @@ const ResPersonsPage = observer(() => {
           <HeaderCell>Имя</HeaderCell>
           
           <HeaderCell>Отчество</HeaderCell>
+          <HeaderCell>Номер телефона</HeaderCell>
+
+
           <HeaderCell>Email</HeaderCell>
           <HeaderCell>Роль</HeaderCell>
           <HeaderCell>Позиция</HeaderCell>
@@ -74,6 +77,8 @@ const ResPersonsPage = observer(() => {
               <Cell>{person.lastName || '-'}</Cell>
               <Cell>{person.firstName || '-'}</Cell>
               <Cell>{person.patronymic || '-'}</Cell>
+              <Cell>{person.phoneNumber}</Cell>
+
               <Cell>{person.email}</Cell>
               <Cell>{roleNames[person.role] || person.role}</Cell>
               <Cell>{positionNames[person.position] || person.position}</Cell>
