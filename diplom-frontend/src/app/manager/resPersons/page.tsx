@@ -31,6 +31,17 @@ const ResPersonsPage = observer(() => {
     return <div>Нет доступа</div>;
   }
 
+    const roleNames: Record<string, string> = {
+    ADMIN: 'Администратор',
+    MANAGER: 'Менеджер',
+    USER: 'Пользователь',
+  };
+
+  const positionNames: Record<string, string> = {
+    NONE: 'Без должности',
+    EMPLOYEE: 'Сотрудник',
+    RES_PERSON: 'Ответственное лицо',
+  };
   return (
     <PageContainer>
       <PageTitle>Ответственные лица</PageTitle>
@@ -58,8 +69,10 @@ const ResPersonsPage = observer(() => {
               <Cell>{person.phoneNumber}</Cell>
 
               <Cell>{person.email}</Cell>
-              <Cell>{person.role}</Cell>
-              <Cell>{person.position}</Cell>
+              {/* <Cell>{person.role}</Cell>
+              <Cell>{person.position}</Cell> */}
+              <Cell>{roleNames[person.role] || person.role}</Cell>
+              <Cell>{positionNames[person.position] || person.position}</Cell>
               <Cell>{person.address || '—'}</Cell>
             </Row>
           ))}
