@@ -10,7 +10,9 @@ const axiosInstance = axios.create({
   baseURL: (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4200') + '/api',
 
   withCredentials: true,
+  
 });
+axiosInstance.defaults.withCredentials = true;
 
 export default axiosInstance;
 

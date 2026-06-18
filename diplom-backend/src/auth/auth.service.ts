@@ -50,12 +50,14 @@ export class AuthService {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
+      path: '/',
       maxAge: this.calculateMs(this.accessExpires),
     });
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
+      path: '/',
       maxAge: this.calculateMs(this.refreshExpires),
     });
 
@@ -88,14 +90,16 @@ export class AuthService {
       maxAge: this.calculateMs(this.accessExpires),
       // sameSite: 'lax',
       secure: true,
-  sameSite: 'none',
+      sameSite: 'none',
+      path: '/',
     });
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       maxAge: this.calculateMs(this.refreshExpires),
       // sameSite: 'lax',
       secure: true,
-  sameSite: 'none',
+      sameSite: 'none',
+      path: '/',
     });
 
     const { password, ...safeUser } = user;
@@ -134,13 +138,15 @@ export class AuthService {
         httpOnly: true,
         maxAge: this.calculateMs(this.accessExpires),
         secure: true,
-  sameSite: 'none',
+        sameSite: 'none',
+        path: '/',
       });
       res.cookie('refreshToken', newRefreshToken, {
         httpOnly: true,
         maxAge: this.calculateMs(this.refreshExpires),
         secure: true,
-  sameSite: 'none',
+        sameSite: 'none',
+        path: '/',
       });
 
       return { message: 'Токены обновлены' };
