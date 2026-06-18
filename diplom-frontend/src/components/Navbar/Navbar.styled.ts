@@ -45,6 +45,18 @@ export const RightSection = styled.div`
 
   margin-left: auto; 
   justify-content: flex-end;
+  
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #97c3fa;
+    }
+  }
 `;
 
 export const UserInfo = styled.div`
