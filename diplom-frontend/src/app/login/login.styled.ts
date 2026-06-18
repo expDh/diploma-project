@@ -21,6 +21,7 @@ export const LoginContainer = styled.div`
     }
   }
   h2{
+  color:white;
   text-align: center;
   margin: 0 0 40px 0;
   font-size: 28px;
