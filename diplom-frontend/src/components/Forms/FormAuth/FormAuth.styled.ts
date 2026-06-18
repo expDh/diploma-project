@@ -16,5 +16,8 @@ export const InputAuthContainer = styled.div`
     padding: 8px 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    outline: none;
+    box-shadow: none;
+}
   }
 `;
