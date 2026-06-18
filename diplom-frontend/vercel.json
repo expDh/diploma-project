@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://diploma-production-b922.up.railway.app/api/$1"
+    }
+  ]
+}

@@ -7,8 +7,8 @@ const axiosInstance = axios.create({
   // baseURL: 'https://diploma-inventory.ru/api',
   // baseURL: '/api',
   // baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4200',
-  baseURL: (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4200') + '/api',
-
+  // baseURL: (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4200') + '/api',
+  baseURL: '/api',
   withCredentials: true,
   
 });
